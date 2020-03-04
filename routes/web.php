@@ -17,9 +17,11 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'user'], function($router) {
 	$router->post('login', 'UserController@login');
 });
-$router->group(['prefix' => 'magazine'], function($router) {
-	$router->get('all', 'MagazineController@all');
-});
-$router->group(['prefix' => 'news'], function($router) {
-	$router->get('all', 'NewsController@all');
+$router->group(['middleware' => 'auth'], function($router) {
+	$router->group(['prefix' => 'magazine'], function($router) {
+		$router->get('all', 'MagazineController@all');
+	});
+	$router->group(['prefix' => 'news'], function($router) {
+		$router->get('all', 'NewsController@all');
+	});
 });

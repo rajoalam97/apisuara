@@ -151,7 +151,7 @@ function responseNoresult($code,$message,$status){
         'code'=>$code,
         'message'=>$message,
         'status'=>$status,
-        "data"=>[],
+        "data"=>null,
     ];
     return response()->json($response, $code)->setStatusCode($code, $message);
 }

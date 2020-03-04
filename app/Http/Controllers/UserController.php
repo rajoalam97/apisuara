@@ -10,6 +10,7 @@ use App\myModel\MasterUser;
 class UserController extends Controller{
     public function login(Request $request){
         $id=getToken(6);
+        $token=getToken(110);
         $email = $request->input('email');
         $sign_by = $request->input('sign_by');
         $name = $request->input('name');
@@ -29,6 +30,8 @@ class UserController extends Controller{
                 $code = Konstanta::$success_code; $message =Konstanta::$success_message; $status=true;
                 $result = MasterUser::where('email',$email)->first();
             }
+            $result['token']=$token;
+            insert_token($result['user_id'],$token);
         }
         return responseResult($code,$message,$status,$result);
     }
