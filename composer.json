@@ -20,7 +20,8 @@
         ],
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": ["app/Helpers/Core_API.php"]
     },
     "autoload-dev": {
         "classmap": [

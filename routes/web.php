@@ -14,3 +14,12 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->group(['prefix' => 'user'], function($router) {
+	$router->post('login', 'UserController@login');
+});
+$router->group(['prefix' => 'magazine'], function($router) {
+	$router->get('all', 'MagazineController@all');
+});
+$router->group(['prefix' => 'news'], function($router) {
+	$router->get('all', 'NewsController@all');
+});
