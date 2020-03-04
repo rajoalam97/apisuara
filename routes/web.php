@@ -14,6 +14,7 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+$router->get('additional', 'AdditionalController@index');
 $router->group(['prefix' => 'user'], function($router) {
 	$router->post('login', 'UserController@login');
 });
