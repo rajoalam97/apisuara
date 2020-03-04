@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class AdditionalController extends Controller{
     public function index(Request $request){
         $type = $request->input('type');
-        $result = MasterAdditional::where('type',$type)->get();
+        $result = MasterAdditional::where('type',$type)->first();
         $code   =Konstanta::$success_code;
         $message=Konstanta::$success_message;
         $status = true;
