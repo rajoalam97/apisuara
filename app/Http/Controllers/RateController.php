@@ -61,4 +61,21 @@ class RateController extends Controller{
         }
         return responseResult($code,$message,$status,$result);
     }
+    public function update(Request $request){
+        $code   =Konstanta::$success_code;$message=Konstanta::$success_message;$status=true;
+        
+        $id = $request->input('id');
+        $rate_total = $request->input('rate_total');
+        $rate_data = $request->input('rate_data');
+        $comments = $request->input('comments');
+        $update = MasterRating::where('id',$id)->update(["rate_total"=>$rate_total,"rate_data"=>$rate_data,"comments"=>$comments]);
+        $result = MasterRating::with('data_magazine')->with('data_user')->where('id',$id)->first();
+        if (!$update){
+            $code = Konstanta::$failed_code;
+            $message = Konstanta::$failed_message;
+            $status = false;
+            $result=null;
+        }
+        return responseResult($code,$message,$status,$result);
+    }
 }

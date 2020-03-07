@@ -28,5 +28,6 @@ $router->group(['middleware' => 'auth'], function($router) {
 	$router->group(['prefix' => 'rate'], function($router) {
 		$router->get('all', 'RateController@all');
 		$router->get('detail', 'RateController@detail');
+		$router->post('update', 'RateController@update');
 	});
 });
