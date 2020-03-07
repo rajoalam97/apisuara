@@ -26,7 +26,7 @@ class RateController extends Controller{
     }
     public function detail(Request $request){
         $id = $request->input('id');
-        if($id==NULL){
+        if($id==NULL OR trim($id) === ''){
             $user_id = $request->input('user_id');
             $id_magazine = $request->input('id_magazine');
             if($user_id==NULL || $id_magazine==NULL){
