@@ -50,14 +50,20 @@ class RateController extends Controller{
         
     }
     public function insert(Request $request){
-        $data = $request->except(['id','nota','status']);
-        $update = MasterBahanTransIn::insert($data);
-        $result = MasterBahanTransIn::with('data_bahan')->where('id_in',$id_in)->first();
-        if (!$update OR $imageok=='no'){
+        $code   =Konstanta::$success_code;$message=Konstanta::$success_message;$status=true;
+        $data = $request->except(['status']);
+        $id = MasterRating::max('id')+1;
+        $data['last_updated']=date('Y-m-d H:i:s');
+        $data['created_at']=date('Y-m-d H:i:s');
+        $data['id']=$id;
+
+        $insert = MasterRating::insert($data);
+        $result = MasterRating::with('data_magazine')->with('data_user')->where('id',$id)->first();
+        if (!$insert){
             $code = Konstanta::$failed_code;
             $message = Konstanta::$failed_message;
             $status = false;
-            $result=[];
+            $result=null;
         }
         return responseResult($code,$message,$status,$result);
     }
