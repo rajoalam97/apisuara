@@ -54,7 +54,7 @@ class RateController extends Controller{
         $data = $request->except(['status']);
         $id = MasterRating::max('id')+1;
         $data['last_updated']=date('Y-m-d H:i:s');
-        $data['created_at']=date('Y-m-d H:i:s');
+        $data['created_date']=date('Y-m-d H:i:s');
         $data['id']=$id;
 
         $insert = MasterRating::insert($data);
