@@ -21,6 +21,7 @@ $router->group(['prefix' => 'user'], function($router) {
 $router->group(['middleware' => 'auth'], function($router) {
 	$router->group(['prefix' => 'magazine'], function($router) {
 		$router->get('all', 'MagazineController@all');
+		$router->get('detail', 'MagazineController@detail');
 	});
 	$router->group(['prefix' => 'news'], function($router) {
 		$router->get('all', 'NewsController@all');

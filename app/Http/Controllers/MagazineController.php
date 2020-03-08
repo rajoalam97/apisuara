@@ -20,4 +20,19 @@ class MagazineController extends Controller{
         $status = true;
         return responseResult($code,$message,$status,$result);
     }
+    public function detail(Request $request){
+        $id_magazine = $request->input('id_magazine');
+        if($id_magazine==NULL){
+            $code=Konstanta::$failed_code;
+            $message=Konstanta::$failed_message;
+            return responseNoresult($code,$message,false);
+        }else{
+            $result = MasterMagazine::where('id',$id_magazine)->first();
+            $code   =Konstanta::$success_code;
+            $message=Konstanta::$success_message;
+            $status = true;
+            return responseResult($code,$message,$status,$result);
+        }
+        
+    }
 }
