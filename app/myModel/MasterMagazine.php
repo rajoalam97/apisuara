@@ -10,4 +10,8 @@ class MasterMagazine extends Model{
 	protected $table = 'magazine';
 	protected $primaryKey = 'id';
 
+	public function data_rating(){
+        return $this->hasMany('App\myModel\MasterRating', 'id_magazine', 'id');
+    }
+
 }

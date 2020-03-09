@@ -14,7 +14,7 @@ class MagazineController extends Controller{
         if($limit==NULL){
             $limit = 1000;
         }
-        $result = MasterMagazine::take($limit)->get();
+        $result = MasterMagazine::with('data_rating.data_user')->take($limit)->get();
         $code   =Konstanta::$success_code;
         $message=Konstanta::$success_message;
         $status = true;
@@ -27,7 +27,7 @@ class MagazineController extends Controller{
             $message=Konstanta::$failed_message;
             return responseNoresult($code,$message,false);
         }else{
-            $result = MasterMagazine::where('id',$id_magazine)->first();
+            $result = MasterMagazine::with('data_rating.data_user')->where('id',$id_magazine)->first();
             $code   =Konstanta::$success_code;
             $message=Konstanta::$success_message;
             $status = true;
