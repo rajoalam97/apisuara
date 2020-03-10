@@ -18,14 +18,14 @@ $router->get('additional', 'AdditionalController@index');
 $router->group(['prefix' => 'user'], function($router) {
 	$router->post('login', 'UserController@login');
 });
+$router->group(['prefix' => 'magazine'], function($router) {
+	$router->get('all', 'MagazineController@all');
+	$router->get('detail', 'MagazineController@detail');
+});
+$router->group(['prefix' => 'news'], function($router) {
+	$router->get('all', 'NewsController@all');
+});
 $router->group(['middleware' => 'auth'], function($router) {
-	$router->group(['prefix' => 'magazine'], function($router) {
-		$router->get('all', 'MagazineController@all');
-		$router->get('detail', 'MagazineController@detail');
-	});
-	$router->group(['prefix' => 'news'], function($router) {
-		$router->get('all', 'NewsController@all');
-	});
 	$router->group(['prefix' => 'rate'], function($router) {
 		$router->get('all', 'RateController@all');
 		$router->get('detail', 'RateController@detail');
